@@ -1,0 +1,21 @@
+WebView webView = (WebView)findViewById(R.id.webview);
+webView.setWebViewClient(new WebViewClient() {
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        return true;
+    }
+
+    @Override
+    public void onLoadResource(WebView view, String url) {
+        if (url.startsWith("http://www.my-own-domain.com")) {
+            //Handle Internal Link...
+        } else {
+            //Open Link in a Custom Tab
+            Uri uri = Uri.parse(url);
+            new CustomTabsIntent.Builder()
+                  .build()
+                  .launchUrl(context, uri));                            
+        }
+    }
+});
+
